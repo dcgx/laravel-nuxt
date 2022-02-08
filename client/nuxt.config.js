@@ -8,6 +8,8 @@ export default {
 
   srcDir: __dirname,
 
+  // buildDir: 'public/_nuxt',
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -26,14 +28,19 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  loading: { color: '#007bff' },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [{ src: '~/assets/sass/app.scss', lang: 'scss' }],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/nuxt-client-init', '~/plugins/bootstrap-vue'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    '~/components',
+    { path: '~/components/app', extensions: ['vue'] },
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -42,10 +49,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/router'],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -54,7 +58,9 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extractCSS: true,
+  },
 
   hooks: {
     generate: {
