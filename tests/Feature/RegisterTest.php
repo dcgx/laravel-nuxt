@@ -37,4 +37,19 @@ class RegisterTest extends TestCase
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
     }
+
+    /** @test */
+    public function required_fields_for_registration()
+    {
+        $response = $this->postJson('/api/register', [])
+            ->assertStatus(422)
+            ->assertJson([
+                "message" => "The given data was invalid.",
+                "errors" => [
+                    "name" => ["The name field is required."],
+                    "email" => ["The email field is required."],
+                    "password" => ["The password field is required."],
+                    ]
+                ]);
+    }
 }

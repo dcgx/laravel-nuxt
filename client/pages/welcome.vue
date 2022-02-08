@@ -8,7 +8,6 @@
 
     <div class="text-center">
       <div class="title mb-4">
-        <span class="laravel">Laravel</span><span class="nuxt">Nuxt</span>
         {{ title }}
       </div>
     </div>

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Cookies from 'js-cookie'
 
 export const state = () => ({
@@ -45,7 +44,7 @@ export const actions = {
 
   async fetchUser({ commit }) {
     try {
-      const { data } = await axios.get('/user')
+      const { data } = await this.$axios.get('/user')
 
       commit('fetchUserSuccess', data)
     } catch (e) {
@@ -61,7 +60,7 @@ export const actions = {
 
   async logout({ commit }) {
     try {
-      await axios.post('/logout')
+      await this.$axios.post('/logout')
     } catch (e) {}
 
     Cookies.remove('token')
@@ -70,7 +69,7 @@ export const actions = {
   },
 
   async fetchOauthUrl(ctx, { provider }) {
-    const { data } = await axios.post(`/oauth/${provider}`)
+    const { data } = await this.$axios.post(`/oauth/${provider}`)
 
     return data.url
   },

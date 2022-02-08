@@ -13,6 +13,12 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  env: {
+    apiUrl: process.env.API_URL || process.env.APP_URL + '/api',
+    appName: process.env.APP_NAME || 'Laravel Nuxt',
+    appLocale: process.env.APP_LOCALE || 'en',
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'client',
@@ -34,7 +40,11 @@ export default {
   css: [{ src: '~/assets/sass/app.scss', lang: 'scss' }],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/nuxt-client-init', '~/plugins/bootstrap-vue'],
+  plugins: [
+    '~/plugins/nuxt-client-init',
+    '~/plugins/axios',
+    '~/plugins/bootstrap-vue',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
@@ -50,12 +60,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/axios', '@nuxtjs/router'],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

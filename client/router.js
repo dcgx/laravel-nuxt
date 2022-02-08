@@ -9,6 +9,7 @@ const page = (path) => () =>
 
 const routes = [
   { path: '/', name: 'welcome', component: page('welcome.vue') },
+  { path: '/home', name: 'home', component: page('index.vue') },
   { path: '/login', name: 'login', component: page('login.vue') },
   { path: '/register', name: 'register', component: page('register.vue') },
 ]

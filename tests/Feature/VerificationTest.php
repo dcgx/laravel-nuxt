@@ -54,7 +54,7 @@ class VerificationTest extends TestCase
     public function resend_verification_notification()
     {
         $user = User::factory()->create(['email_verified_at' => null]);
-
+        
         Notification::fake();
 
         $this->postJson('/api/email/resend', ['email' => $user->email])
