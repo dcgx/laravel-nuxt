@@ -8,7 +8,7 @@ use Tests\TestCase;
 class LoginTest extends TestCase
 {
     /** @test */
-    public function login()
+    public function can_login()
     {
         $user = User::factory()->create();
 
@@ -23,5 +23,20 @@ class LoginTest extends TestCase
 
     }
 
-    // validate if email verified at is null
+    /** @test */
+    public function can_logout()
+    {
+        $token = $this->postJson('/api/login', [
+            'email' => User::factory()->create()->email,
+            'password' => 'password',
+            'device' => 'device'
+        ])->json()['token'];
+
+        $this->postJson("/api/logout?token=$token")
+            ->assertSuccessful();
+
+        $this->getJson("/api/user?token=$token")
+            ->assertStatus(401);
+    }
+
 }
