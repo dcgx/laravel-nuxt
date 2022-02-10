@@ -30,8 +30,8 @@ class LoginController extends Controller
     {
         $this->guard()->logout();
 
-        $user = $request->user();
-        $user->tokens()->delete();
+        // $user = $request->user();
+        // $user->tokens()->delete();
     }
 
     protected function attemptLogin(Request $request) 
@@ -65,7 +65,14 @@ class LoginController extends Controller
 
     protected function sendFailedLoginResponse(Request $request) 
     {
-        //
+        $user = $this->guard()->user();
+        if ($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail()) {
+            throw VerifyEmailException::forUser($user);
+        }
+
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
     }
 
     public function validateLogin(Request $request)
