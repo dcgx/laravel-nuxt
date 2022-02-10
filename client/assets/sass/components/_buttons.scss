@@ -1,4 +1,4 @@
-.btn.loading {
+.btn-loading {
   position: relative;
   pointer-events: none;
   color: transparent !important;
@@ -9,7 +9,7 @@
     border-radius: 50%;
     border-right-color: transparent;
     border-top-color: transparent;
-    content: '';
+    content: "";
     display: block;
     height: 1em;
     width: 1em;
@@ -20,10 +20,6 @@
 }
 
 @keyframes spinAround {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
 }
