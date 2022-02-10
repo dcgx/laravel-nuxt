@@ -1,16 +1,20 @@
+import axios from 'axios'
 import Cookies from 'js-cookie'
 
+// state
 export const state = () => ({
   user: null,
   token: null,
 })
 
+// getters
 export const getters = {
   user: (state) => state.user,
   token: (state) => state.token,
   check: (state) => state.user !== null,
 }
 
+// mutations
 export const mutations = {
   setToken(state, token) {
     state.token = token
@@ -29,7 +33,7 @@ export const mutations = {
     state.token = null
   },
 
-  setUser(state, { user }) {
+  updateUser(state, { user }) {
     state.user = user
   },
 }
@@ -44,7 +48,7 @@ export const actions = {
 
   async fetchUser({ commit }) {
     try {
-      const { data } = await this.$axios.get('/user')
+      const { data } = await axios.get('/user')
 
       commit('fetchUserSuccess', data)
     } catch (e) {
@@ -55,12 +59,12 @@ export const actions = {
   },
 
   updateUser({ commit }, payload) {
-    commit('setUser', payload)
+    commit('updateUser', payload)
   },
 
   async logout({ commit }) {
     try {
-      await this.$axios.post('/logout')
+      await axios.post('/logout')
     } catch (e) {}
 
     Cookies.remove('token')
@@ -69,7 +73,7 @@ export const actions = {
   },
 
   async fetchOauthUrl(ctx, { provider }) {
-    const { data } = await this.$axios.post(`/oauth/${provider}`)
+    const { data } = await axios.post(`/oauth/${provider}`)
 
     return data.url
   },
