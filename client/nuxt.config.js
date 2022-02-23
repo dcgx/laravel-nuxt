@@ -42,7 +42,7 @@ export default {
   plugins: ['~/plugins/axios', '~/plugins/nuxt-client-init', { src: '~plugins/bootstrap', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: ['~/components', { path: '~/components/base', extensions: ['vue'] }],
+  components: [{ path: '~/components', prefix: 'b', extensions: ['vue'] }],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
