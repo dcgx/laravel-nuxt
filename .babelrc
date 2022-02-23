@@ -12,5 +12,16 @@
         ]
       ]
     }
-  }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@components": "./client/common"
+        }
+      }
+    ]
+  ]
 }
