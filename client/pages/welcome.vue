@@ -2,13 +2,28 @@
   <div>
     <div class="top-right links">
       <template v-if="authenticated">
-        <router-link :to="{ name: 'home' }"> Home </router-link>
+        <router-link :to="{ name: 'home' }">
+          {{ 'Home' }}
+        </router-link>
+      </template>
+      <template v-else>
+        <router-link :to="{ name: 'login' }">
+          {{ 'Kogin' }}
+        </router-link>
+        <router-link :to="{ name: 'register' }">
+          {{ 'Register' }}
+        </router-link>
       </template>
     </div>
 
     <div class="text-center">
       <div class="title mb-4">
-        {{ title }}
+        <span class="laravel">Laravel</span><span class="nuxt">Nuxt</span>
+        <!-- {{ title }} -->
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/cretueusebiu/laravel-nuxt">github.com/cretueusebiu/laravel-nuxt</a>
       </div>
     </div>
   </div>
@@ -16,15 +31,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'WelcomePage',
   layout: 'simple',
+
   data: () => ({
     title: process.env.appName,
   }),
+
   head() {
-    return { title: 'Title' }
+    return { title: 'Home' }
   },
+
   computed: mapGetters({
     authenticated: 'auth/check',
   }),
@@ -37,12 +56,15 @@ export default {
   right: 10px;
   top: 18px;
 }
+
 .title {
   font-size: 85px;
 }
+
 .laravel {
   color: #2e495e;
 }
+
 .nuxt {
   color: #00c48d;
 }
