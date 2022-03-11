@@ -36,10 +36,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [{ src: '~/assets/sass/app.scss', lang: 'scss' }],
+  css: [{ src: '~/assets/scss/app.scss', lang: 'scss' }],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/axios', '~/plugins/nuxt-client-init', { src: '~plugins/bootstrap', mode: 'client' }],
+  plugins: ['./plugins/mixins/user', '~/plugins/axios', '~/plugins/nuxt-client-init', { src: '~plugins/bootstrap', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [{ path: '~/components', prefix: 'b', extensions: ['vue'] }],
